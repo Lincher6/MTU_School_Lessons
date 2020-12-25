@@ -20,6 +20,5 @@ module.exports = (arr1, arr2) => {
     }, [])
 
     result.push(...numbers.other)
-    arr1.splice(0, arr1.length, ...result)
-    return arr1
+    return result
 }
