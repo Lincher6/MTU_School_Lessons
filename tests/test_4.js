@@ -6,4 +6,3 @@ arr2 = [2,1,4,3,9,6];
 result = [2,2,2,1,4,3,3,9,6,7,19]
 
 assert.notStrictEqual(resolve(arr1, arr2), result);
-assert.strictEqual(resolve(arr1, arr2), arr1);
