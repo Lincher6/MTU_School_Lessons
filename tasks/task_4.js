@@ -1,5 +1,4 @@
 module.exports = (arr1, arr2) => {
-    arr1 = arr1.sort((a, b) => a - b)
     const numbers = {other: []}
 
     arr1.forEach(number => {
@@ -19,6 +18,7 @@ module.exports = (arr1, arr2) => {
         return acc
     }, [])
 
+    numbers.other = numbers.other.sort((a, b) => a - b)
     result.push(...numbers.other)
     return result
 }
