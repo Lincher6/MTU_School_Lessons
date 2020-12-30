@@ -17,9 +17,9 @@ module.exports = (value) => {
 
     return Object.keys(digits).reduce((acc, key) => {
         while (value.includes(key)) {
-            value = value.replace(key, '')
-            acc += digits[key]
+            value = value.replace(key, '');
+            acc += digits[key];
         }
-        return acc
-    }, 0)
+        return acc;
+    }, 0);
 }
