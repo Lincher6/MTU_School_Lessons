@@ -10,21 +10,21 @@ module.exports = (arr1, arr2) => {
     }
 
     if (!Array.isArray(arr1)) {
-        throw new Error("arr1 is not an array");
+        throw new Error("First argument is not an array");
     } else if (!Array.isArray(arr2)) {
-        throw new Error("arr2 is not an array");
+        throw new Error("Second argument is not an array");
     } else if (arr1.length === 0) {
-        throw new Error("arr1 must not be empty");
+        throw new Error("First array must not be empty");
     } else if (arr2.length >= 1000) {
-        throw new Error("arr2 is too big. max=1000");
+        throw new Error("Second array is too big. max=1000");
     } else if (arr1.some(el => el < 1 || typeof el !== 'number')) {
-        throw new Error("arr1 elements must be positive numbers");
+        throw new Error("First array elements must be positive numbers");
     } else if (arr1.some(el => el > 1000 || typeof el !== 'number')) {
-        throw new Error("arr2 elements must be numbers less than 1000");
+        throw new Error("Second array elements must be numbers less than 1000");
     } else if (!isDistinct(arr2)) {
-        throw new Error("arr2 elements must be distinct");
+        throw new Error("Second array elements must be distinct");
     } else if (arr2.some(el => !arr1.includes(el))) {
-        throw new Error("All arr2 elements must be in arr1");
+        throw new Error("All second array elements must be in first array");
     }
 
 
