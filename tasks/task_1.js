@@ -1,4 +1,8 @@
+const {RequiredError} = require("../errors");
+
 module.exports = (value) => {
+    validate(value);
+
     const digits = {
         CM: 900,
         M: 1000,
@@ -22,4 +26,17 @@ module.exports = (value) => {
         }
         return acc;
     }, 0);
+}
+
+function validate(value) {
+    const letters = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
+    if (typeof value !== 'string') {
+        throw new TypeError('Value is not a string');
+    } else if (value.length > 15) {
+        throw new RangeError('Roman number is too big');
+    } else if (value.length === 0) {
+        throw new RequiredError('Value is empty');
+    } else if (value.split('').some(letter => !letters.includes(letter))) {
+        throw new TypeError('Not a roman number');
+    }
 }
