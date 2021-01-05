@@ -1,15 +1,7 @@
-module.exports = (value) => {
-    const letters = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
-    if (typeof value !== 'string') {
-        throw new Error('Value is not a string');
-    } else if (value.length > 15) {
-        throw new Error('Roman number is too big');
-    } else if (value.length === 0) {
-        throw new Error('Value is empty');
-    } else if (value.split('').some(letter => !letters.includes(letter))) {
-        throw new Error('Not a roman number');
-    }
+const {RequiredError} = require("../errors");
 
+module.exports = (value) => {
+    validate(value);
 
     const digits = {
         CM: 900,
@@ -27,17 +19,24 @@ module.exports = (value) => {
         I: 1
     };
 
-    const year = Object.keys(digits).reduce((acc, key) => {
+    return Object.keys(digits).reduce((acc, key) => {
         while (value.includes(key)) {
             value = value.replace(key, '');
             acc += digits[key];
         }
         return acc;
     }, 0);
+}
 
-    if (year > 3999 || year < 1) {
-        throw new Error('Invalid year')
+function validate(value) {
+    const letters = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
+    if (typeof value !== 'string') {
+        throw new TypeError('Value is not a string');
+    } else if (value.length > 15) {
+        throw new RangeError('Roman number is too big');
+    } else if (value.length === 0) {
+        throw new RequiredError('Value is empty');
+    } else if (value.split('').some(letter => !letters.includes(letter))) {
+        throw new TypeError('Not a roman number');
     }
-
-    return year
 }
